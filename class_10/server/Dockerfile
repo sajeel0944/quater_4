@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Install minimal build tools (some deps may need compilation)
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends build-essential \
+	&& apt-get install -y --no-install-recommends build-essential curl \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Copy metadata first to leverage Docker cache for dependency install
@@ -22,5 +22,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"] 
